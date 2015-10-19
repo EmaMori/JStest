@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>文字実体参照（文字参照）変換ツール</title>
+<meta name="ROBOTS" content="NONE">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<script src="common/js/jquery-1.11.3.min.js"></script>
+<script src="common/js/sourceChange.js"></script>
+<style>
+.js-utfChange_selectSub{display: none;}
+.js-utfChange_selectSub.is-active{display: inline-block;}
+</style>
+</head>
+<body>
+<h1>HTMLタグ変換ツール</h1>
+<form id="js-sourceChange">
+<ul>
+<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check01">①&amp;amp;になっていない&amp;を&amp;amp;に変換する</label></li>
+<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check02">②&quot;を&amp;quot;に変換する</label></li>
+<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check03">③結果の中の全ての&amp;を&amp;amp;に変換する</label></li>
+</ul>
+<textarea id="js-sourceChange_box" rows="10" cols="40" placeholder="ここにソースを入力"></textarea>
+<button type="button" id="js-sourceChange_btn" class="mod-reset_btn">変換</button>
+<button type="reset" class="mod-change_btn">リセット</button>
+</form>
+<form id="js-sourceChange_result">
+<textarea id="js-sourceChange_resultBox" rows="10" cols="40" placeholder="結果がここに表示"></textarea>
+<button type="reset" class="mod-reset_btn">リセット</button>
+</form>
+
+<h1>unicode変換ツール</h1>
+<form id="js-utfChange">
+<p class="js-utfChange_error" id="js-utfChange_error_notext" style="display: none;">文字が入力されていません。</p>
+<p class="js-utfChange_error" id="js-utfChange_error_nocheck" style="display: none;">変換モードが選択されていません。</p>
+<select class="js-utfChange_select" id="js-utfChange_select">
+<option value="" selected="selected">記号</option>
+<option value="" id="js-utfChange_bu">ビュレット・丸</option>
+<option value="" id="js-utfChange_ar">矢印・三角</option>
+<option value="" id="js-utfChange_nmW">丸数字（白）</option>
+<option value="" id="js-utfChange_nmB">丸数字（黒）</option>
+<option value="" id="js-utfChange_sy">シンボル</option>
+</select>
+<select class="js-utfChange_selectSub" id="js-utfChange_bu_select">
+<option value="•" selected="selected">• ビュレット</option>
+<option value="◦">◦ 白ビュレット</option>
+<option value="○">○ 丸印</option>
+<option value="●">● 黒丸印</option>
+</select>
+<select class="js-utfChange_selectSub" id="js-utfChange_ar_select">
+<option value="△">△ 三角</option>
+<option value="▲">▲ 黒三角</option>
+<option value="▽">▽ 逆三角</option>
+<option value="▼">▼ 逆黒三角</option>
+<option value="▷">▷ 右向三角</option>
+<option value="▶" selected="selected">▶ 右向黒三角</option>
+<option value="◁">◁ 左向三角</option>
+<option value="◀">◀ 左向黒三角</option>
+<option value="»">» 終わりギュメ</option>
+<option value="«">« 始めギュメ</option>
+<option value="<">&lt; 不等号(より小)</option>
+<option value=">">&gt; 不等号(より大)</option>
+<option value="←">← 左矢印</option>
+<option value="↑">↑ 上矢印</option>
+<option value="→">→ 右矢印</option>
+<option value="↓">↓ 下矢印</option>
+<option value="↔">↔ 左右矢印</option>
+<option value="↵">↵ リターンキー記号</option>
+<option value="⇐">⇐ 左二重矢印</option>
+<option value="⇑">⇑ 上二重矢印</option>
+<option value="⇒">⇒ 右二重矢印</option>
+<option value="⇓">⇓ 下二重矢印</option>
+<option value="⇔">⇔ 左右二重矢印</option>
+</select>
+<select class="js-utfChange_selectSub" id="js-utfChange_nmW_select">
+<option value="⓪">⓪</option>
+<option value="①" selected="selected">①</option>
+<option value="②">②</option>
+<option value="③">③</option>
+<option value="④">④</option>
+<option value="⑤">⑤</option>
+<option value="⑥">⑥</option>
+<option value="⑦">⑦</option>
+<option value="⑧">⑧</option>
+<option value="⑨">⑨</option>
+<option value="⑩">⑩</option>
+<option value="⑪">⑪</option>
+<option value="⑫">⑫</option>
+<option value="⑬">⑬</option>
+<option value="⑭">⑭</option>
+<option value="⑮">⑮</option>
+<option value="⑯">⑯</option>
+<option value="⑰">⑰</option>
+<option value="⑱">⑱</option>
+<option value="⑲">⑲</option>
+<option value="⑳">⑳</option>
+</select>
+<select class="js-utfChange_selectSub" id="js-utfChange_nmB_select">
+<option value="⓿">⓿</option>
+<option value="❶" selected="selected">❶</option>
+<option value="❷">❷</option>
+<option value="❸">❸</option>
+<option value="❹">❹</option>
+<option value="❺">❺</option>
+<option value="❻">❻</option>
+<option value="❼">❼</option>
+<option value="❽">❽</option>
+<option value="❾">❾</option>
+<option value="❿">❿</option>
+<option value="⓫">⓫</option>
+<option value="⓬">⓬</option>
+<option value="⓭">⓭</option>
+<option value="⓮">⓮</option>
+<option value="⓯">⓯</option>
+<option value="⓰">⓰</option>
+<option value="⓱">⓱</option>
+<option value="⓲">⓲</option>
+<option value="⓳">⓳</option>
+<option value="⓴">⓴</option>
+</select>
+<select class="js-utfChange_selectSub" id="js-utfChange_sy_select">
+<option value="♥" selected="selected">♥ ハート</option>
+<option value="♣">♣ クラブ</option>
+<option value="♦">♦ ダイヤ</option>
+<option value="♠">♠ スペード</option>
+<option value="♡">♡ 白抜きハート</option>
+<option value="♧">♧ 白抜きクラブ</option>
+<option value="♢">♢ 白抜きダイヤ</option>
+<option value="♤">♤ 白抜きスペード</option>
+<option value="☀">☀ 晴れ</option>
+<option value="☁">☁ 曇り</option>
+<option value="☂">☂ 雨</option>
+<option value="☃">☃ 雪</option>
+<option value="☄">☄ 流れ星</option>
+<option value="★">★ 黒い星</option>
+<option value="☆">☆ 白抜き星</option>
+<option value="☠">☠ ドクロ</option>
+<option value="☺">☺ スマイル１</option>
+<option value="☻">☻ スマイル２</option>
+<option value="♨">♨ 温泉</option>
+<option value="♩">♩ 四分音符</option>
+<option value="♪">♪ 八分音符</option>
+<option value="♫">♫ 連桁付き八分音符</option>
+<option value="♬"> 連桁付き十六分音符</option>
+<option value="♭">♭ フラット</option>
+<option value="♮">♮ ナチュラル</option>
+<option value="♯">♯ シャープ</option>
+<option value="✁">✁ ハサミ１</option>
+<option value="✂">✂ ハサミ２</option>
+<option value="✃">✃ ハサミ３</option>
+<option value="✄">✄ ハサミ４</option>
+<option value="✈">✈ 飛行機</option>
+<option value="✉">✉ 封筒</option>
+<option value="✌">✌ ピース</option>
+<option value="✓">✓ チェック１</option>
+<option value="✔">✔ チェック２</option>
+<option value="✕">✕ 乗算１</option>
+<option value="✖">✖ 乗算２</option>
+<option value="✝">✝ 十字架１</option>
+<option value="✞">✞ 十字架２</option>
+<option value="✟">✟ 十字架３</option>
+<option value="✡">✡ 六芒星</option>
+<option value="✩">✩ 星１</option>
+<option value="✪">✪ 星２</option>
+<option value="✫">✫ 星３</option>
+<option value="✱">✱ アスタリスク１</option>
+<option value="✲">✲ アスタリスク２</option>
+<option value="✿">✿ 花１</option>
+<option value="❀">❀ 花２</option>
+<option value="❅">❅ 結晶１</option>
+<option value="❆">❆ 結晶２</option>
+<option value="❄">❄ 結晶３</option>
+</select>
+<input type="text" id="js-utfChange_text" maxlength="1" value="" placeholder="変換したい文字を入力">
+<button type="button" id="js-utfChange_forHTML" class="mod-change_btn js-utfChange_btn">HTML用に変換</button>
+<button type="button" id="js-utfChange_forCSS" class="mod-change_btn js-utfChange_btn">CSS用に変換</button>
+<button type="button" id="js-utfChange_decode" class="mod-change_btn js-utfChange_btn">戻す</button>
+<button type="reset" class="mod-reset_btn">クリア</button>
+</form>
+</body>
+</html>
