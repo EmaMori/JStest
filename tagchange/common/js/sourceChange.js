@@ -33,21 +33,16 @@ $(function(){
 			$('#js-utfChange_error_notext').show();
 		}else{
 			//UTF-16コードに変換する
+			utf = decodeStr(utf);
 			$('.js-utfChange_error').hide();
 			for(utf, str = "", i = 0;i < utf.length;i++){
 				if($thisBtn == 'html'){
-					//元の文字に戻す処理をしたあとHTML用に変換
-					utf = decodeStr(utf);
 					str += "&#" + utf.charCodeAt(i).toString(10) + ";";
 					$("#js-utfChange_text").val(str);
 				}else if($thisBtn == 'css'){
-					//元の文字に戻す処理をしたあとCSS用に変換
-					utf = decodeStr(utf);
 					str += "\\00"+utf.charCodeAt(i).toString(16);
 					$("#js-utfChange_text").val(str);
 				}else if($thisBtn == 'decode'){
-					//元の文字に戻す処理をして表示
-					utf = decodeStr(utf);
 					$("#js-utfChange_text").val(utf);
 				}else{
 					//例外処理
