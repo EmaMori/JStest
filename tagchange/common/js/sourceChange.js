@@ -24,32 +24,31 @@ $(function(){
 		$("#js-sourceChange_resultBox").val(str);
 	});
 
-	//選択した値をテキストボックスに入れる
-	function selectedVal($selector){//セレクタを引数に指定
-		$("#js-utfChange_text").val($($selector).children(':selected').val());
-	}
-
-	//変換ボタンを押した際に処理を実行する
-	$('.js-utfChange_btn').click(function(){
-		if($("#js-utfChange_text").val() == ''){
+	//UTF-16変換処理を実行する
+	$('.js-utfChange_btn').click(function(){		//変換ボタンを押した際に実行
+		$thisBtn = $(this).data('utf16chg');		//ボタンの種別判定
+		var utf = $("#js-utfChange_text").val();	//テキストボックスに入力されている値を代入
+		if(utf == ''){
 			//テキストボックスが入力されていない場合のエラー
 			$('#js-utfChange_error_notext').show();
 		}else{
-			//機種依存文字をUTF-16コードに変換する
-			var utf = $("#js-utfChange_text").val();
-			var utfTmp = utf;
+			//UTF-16コードに変換する
 			$('.js-utfChange_error').hide();
 			for(utf, str = "", i = 0;i < utf.length;i++){
-				if($("#js-utfChange_check01").prop('checked')){
+				if($thisBtn == 'html'){
+					//元の文字に戻す処理をしたあとHTML用に変換
+					utf = decodeStr(utf);
 					str += "&#" + utf.charCodeAt(i).toString(10) + ";";
 					$("#js-utfChange_text").val(str);
-	
-				}else if($("#js-utfChange_check02").prop('checked')){
+				}else if($thisBtn == 'css'){
+					//元の文字に戻す処理をしたあとCSS用に変換
+					utf = decodeStr(utf);
 					str += "\\00"+utf.charCodeAt(i).toString(16);
 					$("#js-utfChange_text").val(str);
-				}else if($("#js-utfChange_check02").prop('checked')){
-					str += "\\00"+utf.charCodeAt(i).toString(16);
-					$("#js-utfChange_text").val(str);
+				}else if($thisBtn == 'decode'){
+					//元の文字に戻す処理をして表示
+					utf = decodeStr(utf);
+					$("#js-utfChange_text").val(utf);
 				}else{
 					//例外処理
 					$('#js-utfChange_error_nocheck').show();
@@ -58,6 +57,17 @@ $(function(){
 		}
 	});
 	
+	//元の文字に戻した値を返す関数
+	function decodeStr(strTmp){
+		if(strTmp.slice(0,2) == '&#'){
+			strTmp = String.fromCharCode(strTmp.slice(2,-1));
+		}else if(strTmp.slice(0,3) == '\\00'){
+			strTmp = strTmp.replace(/\\/g , '0x');
+			strTmp = String.fromCharCode(parseInt(strTmp, 16));
+		}
+		return strTmp;
+	}
+
 	//よく使う文字プルダウンから選ばれた際に実行する
 	$('#js-utfChange_select').change(function(){
 		$('.js-utfChange_selectSub').removeClass('is-active');//表示されているプルダウンがあったらクラスを外して隠す
@@ -67,16 +77,11 @@ $(function(){
 		selectedVal(selected_list);
 		$(selected_list).change(function(){
 			selectedVal(this);
-			n16combert();
 		});
 	});
+
+	//プルダウンから選択した値をテキストボックスに入れる
+	function selectedVal($selector){//セレクタを引数に指定
+		$("#js-utfChange_text").val($($selector).children(':selected').val());
+	}
 });
-/*
-//<![CDATA[
-function n16combert(){
-	for(var b=document.getElementById("n16convert").value,c="",a=0;a<b.length;a++)
-		c+="\\00"+b.charCodeAt(a).toString(16);document.getElementById("n16convert").value=c
-	};
-function add16(opt) {document.getElementById("n16convert").value= opt.options[opt.selectedIndex].value;}
-//]]&gt;
-*/
