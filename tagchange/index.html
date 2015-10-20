@@ -7,18 +7,15 @@
 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
 <script src="common/js/jquery-1.11.3.min.js"></script>
 <script src="common/js/sourceChange.js"></script>
-<style>
-.js-utfChange_selectSub{display: none;}
-.js-utfChange_selectSub.is-active{display: inline-block;}
-</style>
+<link rel="stylesheet" href="common/css/style.css">
 </head>
 <body>
 <h1>HTMLタグ変換ツール</h1>
 <form id="js-sourceChange">
 <ul>
-<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check01">①&amp;amp;になっていない&amp;を&amp;amp;に変換する</label></li>
-<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check02">②&quot;を&amp;quot;に変換する</label></li>
-<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check03">③結果の中の全ての&amp;を&amp;amp;に変換する</label></li>
+<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check01">&amp;amp;になっていない&amp;を&amp;amp;に変換する</label></li>
+<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check02">&quot;を&amp;quot;に変換する</label></li>
+<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check03">結果の中の全ての&amp;を&amp;amp;に変換する</label></li>
 </ul>
 <textarea id="js-sourceChange_box" rows="10" cols="40" placeholder="ここにソースを入力"></textarea>
 <button type="button" id="js-sourceChange_btn" class="mod-reset_btn">変換</button>
