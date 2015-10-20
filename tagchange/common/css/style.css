@@ -1,4 +1,103 @@
-body{
+html {
+  height: 100%;
+  padding: 10px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.47;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+a {
+  color: #004b84;
+}
+
+a:hover {
+  color: #ad102f;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 20px;
+}
+
+dd {
+  margin-left: 0;
 }
 .js-utfChange_selectSub{display: none;}
 .js-utfChange_selectSub.is-active{display: inline-block;}
+
+textarea{
+	width: 100%;
+	max-width: 760px;
+  box-sizing: border-box;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+button {
+  overflow: visible;
+  border: none;
+  min-width: 100px;
+  min-height: 34px;
+  border-radius: 4px;
+  background-color: #ccc;
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+	background-image: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+}
+button:hover {
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 100%);
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 100%);
+	background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 100%);
+}
+button:focus {
+	background-image: none;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 4px;
+  padding: 0;
+}
+textarea {
+  overflow: auto;
+}
+.mod-change_btn{
+	background-color: #6cd;
+}

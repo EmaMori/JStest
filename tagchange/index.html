@@ -7,29 +7,40 @@
 <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
 <script src="common/js/jquery-1.11.3.min.js"></script>
 <script src="common/js/sourceChange.js"></script>
+<link rel="stylesheet" href="common/css/normalize.css">
 <link rel="stylesheet" href="common/css/style.css">
 </head>
 <body>
-<h1>HTMLタグ変換ツール</h1>
+<div id="wrapper">
+<h1>コード変換ツール</h1>
+<h2>HTMLタグ変換</h2>
+<p>上のボックスに、&lt;→&amp;lt;、&gt;→&amp;gt;に変換したいHTMLを入れ、変換ボタンを押してください。</p>
 <form id="js-sourceChange">
-<ul>
-<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check01">&amp;amp;になっていない&amp;を&amp;amp;に変換する</label></li>
-<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check02">&quot;を&amp;quot;に変換する</label></li>
-<li><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check03">結果の中の全ての&amp;を&amp;amp;に変換する</label></li>
-</ul>
+<dl>
+<dt>オプション</dt>
+<dd><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check01">&amp;amp;になっていない&amp;を&amp;amp;に変換する</label></dd>
+<dd><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check02">&quot;を&amp;quot;に変換する</label></dd>
+<dd><label><input type="checkbox" name="js-sourceChange_check" id="js-sourceChange_check03">結果の中の全ての&amp;を&amp;amp;に変換する</label></dd>
+</dl>
 <textarea id="js-sourceChange_box" rows="10" cols="40" placeholder="ここにソースを入力"></textarea>
-<button type="button" id="js-sourceChange_btn" class="mod-reset_btn">変換</button>
-<button type="reset" class="mod-change_btn">リセット</button>
+<p>
+<button type="button" id="js-sourceChange_btn" class="mod-change_btn">変換</button>
+<button type="reset" class="mod-reset_btn">リセット</button>
+</p>
 </form>
 <form id="js-sourceChange_result">
 <textarea id="js-sourceChange_resultBox" rows="10" cols="40" placeholder="結果がここに表示"></textarea>
+<p>
 <button type="reset" class="mod-reset_btn">リセット</button>
+</p>
 </form>
 
-<h1>unicode変換ツール</h1>
+<h2>unicode変換</h2>
+<p>変換する文字を入力or選択して、変換ボタンを押してください。</p>
 <form id="js-utfChange">
 <p class="js-utfChange_error" id="js-utfChange_error_notext" style="display: none;">文字が入力されていません。</p>
 <p class="js-utfChange_error" id="js-utfChange_error_nocheck" style="display: none;">変換モードが選択されていません。</p>
+<p>
 <select class="js-utfChange_select" id="js-utfChange_select">
 <option value="" selected="selected">記号</option>
 <option value="" id="js-utfChange_bu">ビュレット・丸</option>
@@ -173,6 +184,8 @@
 <button type="button" data-utf16chg="css" class="mod-change_btn js-utfChange_btn">CSS用に変換</button>
 <button type="button" data-utf16chg="decode" class="mod-change_btn js-utfChange_btn">元の文字に戻す</button>
 <button type="reset" class="mod-reset_btn">クリア</button>
+</p>
 </form>
+<!-- /#wrapper --></div>
 </body>
 </html>
